@@ -111,7 +111,42 @@ group by 1
 order by numero_alunos desc
 limit 1;
 
+-- aula 3
 
+select * from curso;
+
+select * from categoria;
+
+select * from curso where categoria_id = 1 or categoria_id = 2;
+
+
+select * from curso where categoria_id in (1,2);
+
+
+select id from categoria where nome not like '% %';
+
+
+select curso.nome from curso where categoria_id in (
+	select id from categoria where nome not like '% %' --sub query 
+);
+
+
+select categoria.nome as categoria, 
+	count (curso.id) as numero_cursos
+from categoria
+join curso on curso.categoria_id = categoria.id
+group by categoria;
+
+
+select categoria
+from (
+		select categoria.nome as categoria, 
+			count (curso.id) as numero_cursos
+		from categoria
+		join curso on curso.categoria_id = categoria.id
+		group by categoria
+	) as categoria_cursos
+where numero_cursos > 3; -- exemplo de como uma sub query pode ser usada como uma tabela
 
 
 
