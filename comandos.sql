@@ -178,5 +178,23 @@ select to_char(now(), 'dd/mm/yyyy');
 
 select to_char(128.3::real, '999d99');
 
+--aula 5
 
+create view vw_cursos_por_categoria as 
+		select categoria.nome as categoria, 
+			count (curso.id) as numero_cursos
+		from categoria
+		join curso on curso.categoria_id = categoria.id
+		group by categoria;
+
+select * from vw_cursos_por_categoria;
+
+select * from vw_cursos_por_categoria where numero_cursos > 3;
+
+create view vw_cursos_programacao as select nome from curso where categoria_id = 2;
+
+select * from vw_cursos_programacao;
+
+select categoria.id as categoria_id, vw_cursos_por_categoria.* from vw_cursos_por_categoria
+	join categoria on categoria.nome = vw_cursos_por_categoria.categoria;
 
