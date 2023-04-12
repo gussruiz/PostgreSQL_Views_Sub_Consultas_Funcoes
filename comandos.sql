@@ -148,7 +148,35 @@ from (
 	) as categoria_cursos
 where numero_cursos > 3; -- exemplo de como uma sub query pode ser usada como uma tabela
 
+-- aula 4 
 
+select (primeiro_nome || ' ' || ultimo_nome) as nome_completo from aluno;
+
+select concat('Gustavo', null, 'Ruiz');
+
+select concat('Gustavo', '', 'Ruiz');
+
+select upper(concat('Gustavo', '', 'Ruiz'));
+
+select trim(upper(concat(' ', 'Gustavo', '', 'Ruiz', ' ')));
+
+
+select (primeiro_nome || ' ' || ultimo_nome) as nome_completo, now()::date, data_nascimento from aluno;
+
+select (primeiro_nome || ' ' || ultimo_nome) as nome_completo, (now()::date - data_nascimento) / 365 as idade from aluno;
+
+select (primeiro_nome || ' ' || ultimo_nome) as nome_completo, age(data_nascimento) as idade from aluno;
+
+select (primeiro_nome || ' ' || ultimo_nome) as nome_completo, extract(year from age(data_nascimento)) as idade from aluno;
+
+
+select now();
+
+select now()::date;
+
+select to_char(now(), 'dd/mm/yyyy');
+
+select to_char(128.3::real, '999d99');
 
 
 
